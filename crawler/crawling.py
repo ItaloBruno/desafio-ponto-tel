@@ -1,8 +1,10 @@
 import requests
 import html2text
 import validators
+import asyncio
+import time
 
-def crawler(url, key_word):
+async def crawler(url, key_word):
     """
         Esta função é responsável por pegar o HTML da URL informada como parâmetro da função
         e contar o número de vezes que uma determinada palavra se repete nesta página web.
@@ -11,8 +13,7 @@ def crawler(url, key_word):
     # Estrutura do retorno desta função
     result = {
         'url': url,
-        'key-word': key_word,
-        'count': 0,
+        'number_of_repititions': 0,
         'status': False
     }
     
@@ -30,12 +31,56 @@ def crawler(url, key_word):
 
         data_page = html.handle(page.text).lower()
         data_page = data_page.lower()
-        count = data_page.count(key_word)
+        number_of_repititions = data_page.count(key_word)
 
-        result['count'] = count
+        result['number_of_repititions'] = number_of_repititions
         result['status'] = True
     
     # print(result)
     return result
 
-crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Sanic')
+async def main():
+    await asyncio.gather(
+        crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Sanic'),
+        crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Maria'),
+        crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python'),
+        crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python'),
+        crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python'),
+        crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python'),
+        crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python'),
+        crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python'),
+    )
+
+print(f"started at {time.strftime('%X')}")
+asyncio.run(main())
+print(f"finished at {time.strftime('%X')}")
+
+# loop = asyncio.get_event_loop()
+# tasks = [
+#     loop.create_task(crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Sanic')),
+#     loop.create_task(crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Maria')),
+#     loop.create_task(crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python')),
+#     loop.create_task(crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python')),
+#     loop.create_task(crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python')),
+#     loop.create_task(crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python')),
+#     loop.create_task(crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python')),
+#     loop.create_task(crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python')),
+# ]
+# wait_tasks = asyncio.wait(tasks)
+
+# print(f"started at {time.strftime('%X')}")
+# loop.run_until_complete(wait_tasks)
+# loop,.get
+# print(f"finished at {time.strftime('%X')}")
+# loop.close()
+
+# print(f"started at {time.strftime('%X')}")
+# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Sanic')
+# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Maria')
+# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python')
+# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Sanic')
+# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Maria')
+# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Sanic')
+# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Maria')
+# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Maria')
+# print(f"finished at {time.strftime('%X')}")
