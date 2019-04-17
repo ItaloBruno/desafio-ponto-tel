@@ -20,7 +20,6 @@ async def crawler(url, key_word):
     key_word = key_word.lower()
 
     if not validators.url(url, public=True):
-        # print(result)
         return result
 
     page = requests.get(url)
@@ -36,7 +35,6 @@ async def crawler(url, key_word):
         result['number_of_repititions'] = number_of_repititions
         result['status'] = True
     
-    # print(result)
     return result
 
 async def main():
@@ -73,14 +71,3 @@ print(f"finished at {time.strftime('%X')}")
 # loop,.get
 # print(f"finished at {time.strftime('%X')}")
 # loop.close()
-
-# print(f"started at {time.strftime('%X')}")
-# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Sanic')
-# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Maria')
-# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Python')
-# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Sanic')
-# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Maria')
-# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Sanic')
-# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Maria')
-# crawler('https://github.com/huge-success/sanic/blob/master/docs/sanic/getting_started.md', 'Maria')
-# print(f"finished at {time.strftime('%X')}")
