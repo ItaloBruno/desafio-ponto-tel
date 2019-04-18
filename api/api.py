@@ -1,7 +1,7 @@
 from sanic import Sanic
 from sanic.response import json
 
-def configure_app():
+def create_app():
     app = Sanic('api-web-crawler')
 
     @app.get('/v1')
