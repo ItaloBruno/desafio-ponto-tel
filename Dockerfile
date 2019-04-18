@@ -23,4 +23,4 @@ RUN pip3 install -r requirements/dev.txt
 EXPOSE 8000
 
 # Executando nossa aplicação
-CMD python3 api/api.py
+CMD python3 run.py

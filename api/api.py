@@ -2,7 +2,7 @@ from sanic import Sanic
 from sanic.response import json
 from crawler import crawling
 
-def configure_app():
+def create_app():
     app = Sanic('api-web-crawler')
 
     @app.get('/v1')
@@ -11,7 +11,7 @@ def configure_app():
         urls: list = args['urls']
         word: str = args['word']
 
-        response_objects = []
+        response_objects: list = []
         for url in urls:
             response_object: dict = crawling.crawler(url, word)
             response_objects.append(response_object)
