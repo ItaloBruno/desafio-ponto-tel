@@ -16,16 +16,16 @@ Para este desafio foram utilizadas as seguintes dependências:
     - É uma das versões mais novas desta linguagem.
 + [Framework Web Sanic](https://sanic.readthedocs.io/en/latest/index.html)
     - Muito semelhante ao Flask e que suporta manipuladores de solicitação assíncrona, além de ter uma boa documentação.
++ [AIOHTTP](https://github.com/aio-libs/aiohttp)
+    - Fazer a coleta do HTML de uma determinada url de forma assíncrona, assim aumentando a performance da API.
 + [Html2text](https://github.com/Alir3z4/html2text)
     - Possibilita fazer a coleta dos dados que estão contidos nas tags HTML de um determinado site.
 + [Validators](https://validators.readthedocs.io/en/latest/)
     - Realizar a validação das urls recebidas pela API.
-+ [Requests](https://requests-docs-pt.readthedocs.io/pt_BR/latest/user/install.html)
-    - Fazer a coleta do HTML de uma determinada url.
-+ [Pytest](https://docs.pytest.org/en/latest/)
+<!-- + [Pytest](https://docs.pytest.org/en/latest/)
     - Realização dos testes de nossa API.
 + [Swagger Editor](https://swagger.io/)
-    - Software que possibilita projetar, descrever e documentar  APIs.
+    - Software que possibilita projetar, descrever e documentar  APIs. -->
 
 ---
 ## Criação do ambiente e Execução

@@ -1,42 +1,39 @@
-import requests
 import html2text
 import validators
 import asyncio
-import time
+import aiohttp
 
+HTML =  html2text.HTML2Text()
+HTML.ignore_links=True
 
-def get_html_data(url: str) -> str:
-    page = requests.get(url)
-    html = html2text.HTML2Text()
-    html.ignore_links=True
-    data_page = html.handle(page.text).lower()
-    return data_page
+async def get_html(url: str) -> str:
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            data = await resp.text()
+            return data
 
-def count_number_word(url: str, word: str) -> int:
-    data_page = get_html_data(url)
+async def count_number_word(url: str, word: str) -> dict:
+    if not validators.url(url, public=True):
+        return {
+            'number_of_repititions': 0,
+            'status':False
+        }
+    page = await get_html(url)
+    data_page = HTML.handle(page).lower()
     count = data_page.count(word)
-    return count
+    return {
+        'number_of_repititions': count,
+        'status':True
+    }
 
-
-def crawler(url: str, word: str) -> dict:
+async def crawler(urls: list, word: str) -> dict:
     """
         Esta função é responsável por pegar o HTML da URL informada como parâmetro da função
         e contar o número de vezes que uma determinada palavra se repete nesta página web.
     """
-
-    # Estrutura do retorno desta função
-    result = {
-        'url': url,
-        'number_of_repititions': 0,
-        'status': False
-    }
+    print('Iniciando Crawler...')
     
     word = word.lower()
+    results = await asyncio.gather(*(count_number_word(url, word) for url in urls))
 
-    if not validators.url(url, public=True):
-        return result
-
-    result['number_of_repititions'] = count_number_word(url, word)
-    result['status'] = True
-    
-    return result
+    return dict(zip(urls, results))

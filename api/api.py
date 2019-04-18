@@ -11,10 +11,7 @@ def create_app():
         urls: list = args['urls']
         word: str = args['word']
 
-        response_objects: list = []
-        for url in urls:
-            response_object: dict = crawling.crawler(url, word)
-            response_objects.append(response_object)
+        response_objects: list = await crawling.crawler(urls, word)
         
         return json(
             {
