@@ -9,7 +9,7 @@ class RequestFieldsSchema(Schema):
 def create_app():
     app = Sanic('api-web-crawler')
 
-    @app.get('/v1')
+    @app.post('/v1/crawler')
     async def index(request):
         args: dict = request.json
 

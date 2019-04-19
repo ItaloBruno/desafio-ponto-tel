@@ -17,7 +17,7 @@ COPY . $APP
 WORKDIR $APP
 
 # Instalando as dependências
-RUN pip3 install -r requirements/dev.txt
+RUN pip3 install -r requirements.txt
 
 # Expondo a porta
 EXPOSE 8000

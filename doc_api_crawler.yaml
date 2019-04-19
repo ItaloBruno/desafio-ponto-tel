@@ -1,0 +1,94 @@
+openapi: 3.0.1
+info:
+  title: Desafio Ponto Tel
+  description: "O desafio consiste em desenvolver uma API que receba dois parâmetros:\n\n 
+    1 - Uma lista de URLs \n\n
+    2 - Uma palavra qualquer \n\n 
+    A API deve ser capaz de fazer um crawler nos sites informados e retornar uma resposta contendo um json\
+    \ com a quantidade de ocorrências da palavra informada, por site."
+  contact:
+    name: Italo Bruno Silva
+    email: rt.italo.bruno.silva@gmail.com
+  version: 0.1.0
+servers:
+- url: /v1
+paths:
+  /crawler:
+    post:
+      tags:
+      - Crawler
+      summary: Processor de Crawling em sites Web
+      description: Esse endpoint é responsável por pegar os dados passados na requisição,
+        através de um json, realizar a operação de crawler em cada url e retornar uma
+        lista com o número de vezes que uma palavra se repete em cada site.
+      requestBody:
+        description: Realizar o crawler nos sites informados abaixo
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/request_json'
+      responses:
+        200:
+          description: Uma lista com os resultados dos processos de crawling feitos
+            em cada url.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/crawler_results'
+        400:
+          description: Uma lista de erros encontrados após feita a validação dos dados
+            vindos no body da requisição.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/erros'
+components:
+  schemas:
+    request_json:
+      type: object
+      properties:
+        urls:
+          type: array
+          description: Lista (Array) de Urls
+          items:
+            type: string
+            description: Url de um determinado site
+        word:
+          type: string
+          description: Palavra que você deseja pesquisar o número de ocorrências no site
+    crawler_results:
+      type: array
+      items:
+        type: object
+        properties:
+          url:
+            type: string
+            description: Url em que foi realizada o processo de Crawling
+          number_of_repetitions:
+            type: integer
+            description: Número de ocorrências de uma determinada palavra em um site.          
+          status:
+            type: boolean
+            description: True, se a operação de crawling foi feita com sucesso. Se
+              não False.
+    erros:
+      type: object
+      properties:
+        urls:
+          type: object
+          description: list of erros in urls field
+          properties:
+            0..n:
+              type: array
+              description: Not a valid string
+              items:
+                type: string
+        word:
+          type: array
+          description: Not a valid string
+          items:
+            type: string
