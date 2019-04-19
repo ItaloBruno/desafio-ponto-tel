@@ -3,6 +3,7 @@ import validators
 import asyncio
 import aiohttp
 
+# Definição do extrator de dados da pápina HMTL
 HTML =  html2text.HTML2Text()
 HTML.ignore_links=True
 

@@ -99,6 +99,10 @@ Isso fará com que a imagem docker da aplicação seja criada, possibilitando a 
 
 Após isso, faça os mesmos passos descritos no item anterior para efetuar o acesso a API.
 
+Caso você tenha o [docker-compose](https://docs.docker.com/compose/) instalado em sua máquina, execute o comando a seguir e ele fará o mesmo processo descrito nos dois passos anteriores. Para isso execute:
+
+` docker-compose up `
+
 ---
 ## Dificuldades encontradas
 
