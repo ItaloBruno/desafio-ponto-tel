@@ -2,6 +2,7 @@ from sanic import Sanic
 from sanic.response import json
 from marshmallow import Schema, fields
 from crawler import crawling
+from sanic_redis import SanicRedis
 
 class RequestFieldsSchema(Schema):
     word: str = fields.Str(required=True)
@@ -12,6 +13,14 @@ def create_app():
         Essa função é responsável por fazer a criação da nossa aplicação e configuração de rotas da API.
     """
     app = Sanic('api-web-crawler')
+    app.config.update(
+        {
+            'REDIS': {
+                'address': ('0.0.0.0', 6379)
+            }
+        }
+    )
+    redis = SanicRedis(app) 
 
     @app.post('/v1/crawler')
     async def index(request):
@@ -32,7 +41,7 @@ def create_app():
         # Preparando os dados e fazendo o processo de crawling
         urls: list = args['urls']
         word: str = args['word']
-        response_objects: list = await crawling.crawler(urls, word)
+        response_objects: list = await crawling.crawler(urls, word, redis)
         
         return json(
             {

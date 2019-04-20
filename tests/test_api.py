@@ -20,7 +20,7 @@ def test_post_response():
             },
             {
                 'url': 'https://www.python.org/',
-                'number_of_repititions': 66,
+                'number_of_repititions': 65,
                 'status': True,
             },
             {
