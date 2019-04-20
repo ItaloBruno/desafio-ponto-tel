@@ -31,15 +31,24 @@ Para este desafio foram utilizadas as seguintes dependências:
     - Verificar se as urls recebidas pela API são válidas ou não.
 + [Swagger Editor](https://swagger.io/)
     - Software que possibilita projetar, descrever e documentar  APIs.
-<!-- + [Pytest](https://docs.pytest.org/en/latest/)
-    - Realização dos testes de nossa API. -->
-
++ [Pytest](https://docs.pytest.org/en/latest/)
+    - Realização dos testes de nossa API.
++ [Redis](https://redis.io/download)
+    - O Redis é um armazenamento de estrutura de dados de chave-valor de código aberto e na memória. Ele foi utlizado para a construção do sistema de cache, em conjunto com o Framework Web Sanic.
 ---
 ## Criação do ambiente e Execução
 
+Antes de executar o projeto, verifique se o [Redis](https://redis.io/download) está instalado em seu computador. Caso precise instalar, siga as instruções descritas no site oficial.
+
+Após essa verifica, inicie o redis com o seguint comando:
+
+` <path-to-redis-directory>/src/redis-server `
+
+Agora que o servidor redis foi inicializado, podemos realizar a execução de nosso projeto.
+
 Tem duas maneiras possíveis para a execução deste projeto:
 
-### 1.  Utilizando Python 3.7 instalado em seu computador
+### 1. Utilizando Python 3.7 instalado em seu computador
 
 Primeiramente verifique se o Python 3.7 está instalado em seu sistema. Caso não esteja, procure mais informações de como realizar a sua instalação entrando no site oficial do [Python](https://www.python.org/).
 
