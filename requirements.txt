@@ -1,5 +1,5 @@
 aiofiles==0.4.0
-aiohttp==3.5.4
+aiohttp==3.7.4
 aioredis==1.2.0
 aniso8601==6.0.0
 async-generator==1.10
