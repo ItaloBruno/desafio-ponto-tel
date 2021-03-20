@@ -17,7 +17,7 @@ html2text==2018.1.9
 httptools==0.0.13
 idna==2.8
 itsdangerous==1.1.0
-Jinja2==2.10.1
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 marshmallow==2.19.2
 more-itertools==7.0.0
