@@ -1,6 +1,6 @@
-# Desafio Ponto Tel
+# Desafio PontoTel
 
-Este projeto foi criado para a participação no processo seletivo da Empresa Ponto Tel. O Desafio consiste na criação de uma API, escrita em python 3.7, que receba os seguintes parâmetros:
+Este projeto foi criado para a participação no processo seletivo da Empresa PontoTel. O Desafio consiste na criação de uma API, escrita em python 3.7, que receba os seguintes parâmetros:
 
 + Uma lista de URLs
 + Uma palavra qualquer
